@@ -1,0 +1,45 @@
+<div class="container">
+  <h2>Gestion de Facultades</h2>
+
+  <div class="form-section">
+    <h3>Registrar Facultad</h3>
+    <form (ngSubmit)="guardar()">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="nueva.nombre" name="nombre" required />
+      </div>
+      <div class="form-group">
+        <label>Decano</label>
+        <input type="text" [(ngModel)]="nueva.decano" name="decano" required />
+      </div>
+      <div class="form-group">
+        <label>Ubicacion</label>
+        <input type="text" [(ngModel)]="nueva.ubicacion" name="ubicacion" required />
+      </div>
+      <button type="submit">Guardar</button>
+    </form>
+    @if (mensaje) {
+      <p class="success">{{ mensaje }}</p>
+    }
+  </div>
+
+  <div class="table-section">
+    <h3>Facultades Registradas</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Nombre</th><th>Decano</th><th>Ubicacion</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (f of facultades; track f.id) {
+          <tr>
+            <td>{{ f.id }}</td><td>{{ f.nombre }}</td><td>{{ f.decano }}</td><td>{{ f.ubicacion }}</td>
+          </tr>
+        } @empty {
+          <tr><td colspan="4">No hay facultades registradas</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

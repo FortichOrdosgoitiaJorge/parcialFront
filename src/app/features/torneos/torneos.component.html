@@ -1,0 +1,57 @@
+﻿<div class="container">
+  <h2>Gestión de Torneos</h2>
+
+  <div class="form-section">
+    <h3>Registrar Torneo</h3>
+    <form (ngSubmit)="guardar()">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="nuevoTorneo.nombre" name="nombre" required />
+      </div>
+      <div class="form-group">
+        <label>Deporte</label>
+        <input type="text" [(ngModel)]="nuevoTorneo.deporte" name="deporte" required />
+      </div>
+      <div class="form-group">
+        <label>Fecha de Inicio</label>
+        <input type="date" [(ngModel)]="nuevoTorneo.fechaInicio" name="fechaInicio" required />
+      </div>
+      <div class="form-group">
+        <label>Ciudad</label>
+        <input type="text" [(ngModel)]="nuevoTorneo.ciudad" name="ciudad" required />
+      </div>
+      <button type="submit">Guardar</button>
+    </form>
+    @if (mensaje) {
+      <p class="success">{{ mensaje }}</p>
+    }
+  </div>
+
+  <div class="table-section">
+    <h3>Torneos Registrados</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Deporte</th>
+          <th>Fecha Inicio</th>
+          <th>Ciudad</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (t of torneos; track t.id) {
+          <tr>
+            <td>{{ t.id }}</td>
+            <td>{{ t.nombre }}</td>
+            <td>{{ t.deporte }}</td>
+            <td>{{ t.fechaInicio }}</td>
+            <td>{{ t.ciudad }}</td>
+          </tr>
+        } @empty {
+          <tr><td colspan="5">No hay torneos registrados</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
